@@ -39,6 +39,7 @@ public class AuthController {
     AuthenticationManager authenticationManager;
     @Autowired
     JwtProvider jwtProvider;
+
     @PostMapping("/signup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm){
         if(userService.existsByUsername(signUpForm.getUsername())){
