@@ -43,10 +43,10 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm){
         if(userService.existsByUsername(signUpForm.getUsername())){
-            return new ResponseEntity<>(new ResponseMessage("nouser"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new ResponseMessage("nouser"), HttpStatus.OK);
         }
         if(userService.existsByEmail(signUpForm.getEmail())){
-            return new ResponseEntity<>(new ResponseMessage("noemail"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new ResponseMessage("noemail"), HttpStatus.OK);
         }
         User user = new User(signUpForm.getName(),signUpForm.getUsername()
         ,signUpForm.getEmail(),passwordEncoder.encode(signUpForm.getPassword()));
